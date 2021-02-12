@@ -101,7 +101,7 @@ if (isGetCookie = typeof $request !== 'undefined') {
     await userInfo();
     await kdHost();
     await friendsign();
-    await TaskCenter() 
+    await TaskCenter() ;
     await openbox();
     await getAdVideo();
     await gameVideo();
@@ -175,7 +175,7 @@ function TaskCenter() {
             if (dailys.title == "打卡赚钱" && ONCard == "true") {
               if (dailys.status == "0") {
                 await punchCard()
-              } else if (dailys.status == "1" && ) {
+              } else if (dailys.status == "1" ) {
                 await endCard()
               }
             }
