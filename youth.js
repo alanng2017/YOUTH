@@ -299,8 +299,8 @@ function punchCard() {
                 $.log("每日报名打卡成功，报名时间:"+`${$.time('MM-dd HH:mm')}`)
             }
           else {
-            //detail += `【打卡报名】${punchcardstart.msg}\n`
-          // $.log(punchcardstart.msg)
+            detail += `【打卡报名】${punchcardstart.msg}\n`
+          $.log(punchcardstart.msg)
           }
          resolve();
        })
@@ -321,7 +321,7 @@ function endCard() {
                 } else if (punchcardend.code == 0) {
                     // TODO .不在打卡时间范围内
                     //detail += `【早起打卡】${punchcardend.msg}\n`
-                //   $.log("不在打卡时间范围内")
+                    $.log("不在打卡时间范围内")
                 }
                 resolve()
             })
