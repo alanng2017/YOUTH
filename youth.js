@@ -313,7 +313,7 @@ function endCard() {
         setTimeout(() => {
             $.post(kdHost('WebApi/PunchCard/doCard?'),async(error, response, data) => {
                 punchcardend = JSON.parse(data)
-                if (punchcardend.code == 1) {
+                if (punchcardend.code == 0) {
                     detail += `【早起打卡】${punchcardend.data.card_time}${punchcardend.msg}✅\n`;
                    $.log("早起打卡成功，打卡时间:"+`${punchcardend.data.card_time}`);
                    await $.wait(1000);
