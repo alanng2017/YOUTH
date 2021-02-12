@@ -161,7 +161,7 @@ function TaskCenter() {
     $.post(kdHost('WebApi/NewTaskIos/getTaskList?'), async(error, resp, data) =>{
       try {
         taskres = JSON.parse(data);
-        //$.log(JSON.stringify(taskres,null,2))
+        $.log(JSON.stringify(taskres,null,2))
         //return
         if (taskres.status == 1) {
           for (dailys of taskres.list.daily) {
@@ -175,7 +175,7 @@ function TaskCenter() {
             if (dailys.title == "打卡赚钱" && ONCard == "true") {
               if (dailys.status == "0") {
                 await punchCard()
-              } else if (dailys.status == "1" && $.time("HH") == "22") {
+              } else if (dailys.status == "1" && ) {
                 await endCard()
               }
             }
