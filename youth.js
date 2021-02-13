@@ -10,7 +10,7 @@ let s = 1000 //各数据接口延迟
 const $ = new Env("中青看点")
 let notifyInterval = $.getdata("notifytimes")||50 //通知间隔，默认抽奖每50次通知一次，如需关闭全部通知请设为0
 const notify = $.isNode() ? require('./sendNotify') : '';
-const ONCard = "true" //早起打卡开关
+const ONCard = "true"; //早起打卡开关
 const withdrawcash = $.getdata('zqcash')||30 //提现金额
 let withdrawUrl = process.env.withdrawUrl
 let withdrawBody = process.env.withdrawBody
@@ -101,7 +101,7 @@ if (isGetCookie = typeof $request !== 'undefined') {
     await userInfo();
     await kdHost();
     await friendsign();
-    await TaskCenter() ;
+    await TaskCenter() 
     await openbox();
     await getAdVideo();
     await gameVideo();
@@ -158,12 +158,11 @@ function kdHost(api, header, body) {
 }
 function TaskCenter() {
   return new Promise((resolve, reject) =>{
-     detail =`111`
     $.post(kdHost('WebApi/NewTaskIos/getTaskList?'), async(error, resp, data) =>{
       try {
         taskres = JSON.parse(data);
-          $.log(JSON.stringify(taskres,null,2))
-          //return
+        //$.log(JSON.stringify(taskres,null,2))
+        //return
         if (taskres.status == 1) {
           for (dailys of taskres.list.daily) {
             if (dailys.status == "1" && dailys.action != "") {
@@ -176,7 +175,7 @@ function TaskCenter() {
             if (dailys.title == "打卡赚钱" && ONCard == "true") {
               if (dailys.status == "0") {
                 await punchCard()
-              } else if (dailys.status == "1" ) {
+              } else if (dailys.status == "1" && $.time("HH") == "05"||$.time("HH") == "13") {
                 await endCard()
               }
             }
@@ -300,8 +299,8 @@ function punchCard() {
                 $.log("每日报名打卡成功，报名时间:"+`${$.time('MM-dd HH:mm')}`)
             }
           else {
-            detail += `【打卡报名】${punchcardstart.msg}\n`
-          $.log(punchcardstart.msg)
+            //detail += `【打卡报名】${punchcardstart.msg}\n`
+          // $.log(punchcardstart.msg)
           }
          resolve();
        })
@@ -314,7 +313,7 @@ function endCard() {
         setTimeout(() => {
             $.post(kdHost('WebApi/PunchCard/doCard?'),async(error, response, data) => {
                 punchcardend = JSON.parse(data)
-                if (punchcardend.code == 0) {
+                if (punchcardend.code == 1) {
                     detail += `【早起打卡】${punchcardend.data.card_time}${punchcardend.msg}✅\n`;
                    $.log("早起打卡成功，打卡时间:"+`${punchcardend.data.card_time}`);
                    await $.wait(1000);
@@ -322,7 +321,7 @@ function endCard() {
                 } else if (punchcardend.code == 0) {
                     // TODO .不在打卡时间范围内
                     //detail += `【早起打卡】${punchcardend.msg}\n`
-                    $.log("不在打卡时间范围内")
+                //   $.log("不在打卡时间范围内")
                 }
                 resolve()
             })
