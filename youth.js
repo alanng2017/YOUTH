@@ -158,7 +158,7 @@ function kdHost(api, header, body) {
 }
 function TaskCenter() {
   return new Promise((resolve, reject) =>{
-      $.log("1111")
+     detail =`111`
     $.post(kdHost('WebApi/NewTaskIos/getTaskList?'), async(error, resp, data) =>{
       try {
         taskres = JSON.parse(data);
