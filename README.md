@@ -1,124 +1,21 @@
+## 混沌
 
+1. 中国古代和古希腊都有混沌的神，古希腊神话中的神为[卡俄斯](https://zh.wikipedia.org/wiki/%E5%8D%A1%E4%BF%84%E6%96%AF)，中国《[庄子](https://zh.wikipedia.org/wiki/%E5%BA%84%E5%AD%90_(%E4%B9%A6))》中记载了[浑沌](https://zh.wikipedia.org/wiki/%E6%B7%B7%E6%B2%8C_(%E7%A5%9E%E8%A9%B1%E7%94%9F%E7%89%A9))的故事。
+2. **混沌**，又写作**浑沌**，指混乱而没有秩序的状态。在哲学中，混沌指虚空，或者没有结构的均匀状态。
+3. 在非线性科学中，“混沌”这个词的含义和本意相似但又不完全一致，非线性科学中的**混沌现象**指的是一种确定的但不可预测的运动状态。它的外在表现和纯粹的随机运动很相似，即都不可预测。但和随机运动不同的是，混沌运动在动力学上是确定的，它的不可预测性是来源于运动的不稳定性。或者说混沌系统对无限小的初值变动和微扰也具有敏感性，无论多小的扰动在长时间以后，也会使系统彻底偏离原来的演化方向。混沌现象是自然界中的普遍现象，天气变化就是一个典型的混沌运动。混沌现象的一个著名表述就是[蝴蝶效应](https://zh.wikipedia.org/wiki/%E8%9D%B4%E8%9D%B6%E6%95%88%E5%BA%94)：南美洲一只蝴蝶扇一扇翅膀，就可能会在佛罗里达引起一场飓风。
 
-  [toc]  
+## 免责声明
 
- # <center> 中青看点使用说明 </center>
+1. 此仓储脚本仅用于学习研究，不保证其合法性、准确性、有效性，请根据情况自行判断，本人对此不承担任何保证责任。
 
- [跳转至底部](#注意事项)  ----  [回到主页](https://github.com/Sunert/Scripts)
+2. 由于此仓储脚本仅用于学习研究，您必须在下载后 24 小时内将所有内容从您的计算机或手机或任何存储设备中完全删除，若违反规定引起任何事件本人对此均不负责。
 
-### IOS配置教程
- ```
-[MITM]
-hostname = kd.youth.cn, ios.baertt.com 
- ```
-#### Surge:
-* [模块地址](https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/youth/surge.sgmodule)
+3. 请勿将此仓储脚本用于任何商业或非法目的，若违反规定请自行对此负责。
 
- ```
-https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/youth/surge.sgmodule
- ```
- * 本地重写
- 
- ```
-[Script]
-中青看点 = type=cron,cronexp=35 5 0 * * *,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js,script-update-interval=0
-中青看点 = type=http-request,pattern=https:\/\/kd\.youth\.cn\/WebApi\/NewTaskIos\/getTaskList,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js
-中青看点 = type=http-request,pattern=https:\/\/ios\.baertt\.com\/v5\/article\/complete,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, requires-body=true
-中青看点 = type=http-request,pattern=https:\/\/ios\.baertt\.com\/v5\/article\/red_packet,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, requires-body=true
-中青看点 = type=http-request,pattern=https:\/\/ios\.baertt\.com\/v5\/user\/stay\.json,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, requires-body=true
-中青看点 = type=http-request,pattern=https:\/\/ios\.baertt\.com\/v5\/\w+\/withdraw\d?\.json,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, requires-body=true
-```
-#### Shadowrocket(Cron配置): 
+4. 此仓储脚本涉及应用与本人无关，本人对因此引起的任何隐私泄漏或其他后果不承担任何责任。
 
-```
-[Script]
-中青看点 = type=cron,script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js,cronexpr="1 */6 * * *",timeout=20,enable=true
-```
-####  Loon:
+5. 本人对任何脚本引发的问题概不负责，包括但不限于由脚本错误引起的任何损失和损害。
 
-* [插件地址](https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/youth/loon.plugin)
+6. 如果任何单位或个人认为此仓储脚本可能涉嫌侵犯其权利，应及时通知并提供身份证明，所有权证明，我们将在收到认证文件确认后删除此仓储脚本。
 
- ```
-https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/youth/loon.plugin
- ```
-* 本地重写
-  
- ```
-[Script]
-cron "04 00 * * *" script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, enabled=true, tag=中青看点
-http-request https:\/\/kd\.youth\.cn\/WebApi\/NewTaskIos\/getTaskList script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, enabled=true, tag=中青看点
-http-request https:\/\/ios\.baertt\.com\/v5\/article\/complete script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, requires-body=true, enabled=true, tag=中青看点
-http-request https:\/\/ios\.baertt\.com\/v5\/article\/red_packet script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, requires-body=true, enabled=true, tag=中青看点
-http-request https:\/\/ios\.baertt\.com\/v5\/user\/stay\.json script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, requires-body=true, enabled=true, tag=中青看点
-http-request https:\/\/ios\.baertt\.com\/v5\/\w+\/withdraw\d?\.json script-path=https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, requires-body=true, enabled=true, tag=中青看点
-```
-#### Quantumult X:
-   * [远程重写配置](https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/youth/qx_rewite.txt)
-   
-```
-[rewrite_remote]
-https://raw.githubusercontent.com/Sunert/Scripts/master/TaskConf/youth/qx_rewite.txt
-```
-   * 本地重写配置
-   
-```
-[rewrite_local]
-https:\/\/kd\.youth\.cn\/WebApi\/NewTaskIos\/getTaskList url script-request-header https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js
-https?:\/\/ios\.baertt\.com\/v5\/article\/complete url script-request-body https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js
-https:\/\/ios\.baertt\.com\/v5\/article\/red_packet url script-request-body https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js
-https:\/\/ios\.baertt\.com\/v5\/user\/stay\.json url script-request-body https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js
-https:\/\/ios\.baertt\.com\/v5\/\w+\/withdraw\d?\.json url script-request-body https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js
-```
-   * 本地任务配置
-   
-```
-[task_local]
-1 */5 * * * https://raw.githubusercontent.com/Sunert/Scripts/master/Task/youth.js, enabled=true, tag=中青看点
-```
-###  获取Cookie方法
-  * 打开极速版APP，进去个人中心，或者签到一次，提示获取Cookie
-  - 浏览一篇短文，等待倒计时结束，提示获取阅读请求
-  * 向下滑动，文末有惊喜红包，点击惊喜红包，获取惊喜红包请求(不必选)
-  * 多阅读几篇短文，随机获取阅读时长请求
-  - 正常提现一次，获取提现请求(可选)
-  
- >>> [回到顶部](#IOS配置教程)
-
-### Nodejs 配置密钥 (Github Actions)
-
-<details>
-
-  <summary>
-    <span style="font-size:22">
-       Actions Secrets 
-    </span>
-  </summary>  
-
-| Name | 脚本相关YML | Value分割符 | 必须 / 可选 | 注意事项及样式(其中"xxx"代表任意字符) |
-| :-------: | :------: | :-------: | ------ | ------- |
-| YOUTH_HEADER | <span style="font-size:18; color:#0000ff"> 中青看点 youth.yml </span> |  #或者换行  | 必须 | 请求地址:  "https://kd.youth.cn/WebApi/NewTaskIos/getTaskList"，  <br>中青签到请求头引用: uid=xxx&cookie_id=xxx&cookie=xxx |
-| YOUTH_ARTBODY | 同上 | &或者换行 | 必须 | 请求地址: "https://ios.baertt.com/v5/article/complete"， <br>阅读请求体: p=xxx |
-| YOUTH_REDBODY | 同上 | &或者换行 | 必须 | 请求地址: "https://ios.baertt.com/v5/article/red_packet"， <br>惊喜红包请求体: p=xxx |
-| YOUTH_TIME | 同上 | &或者换行 | 必须 | 请求地址: "https://ios.baertt.com/v5/user/stay.json"，  <br>阅读时长请求体: p=xxx |
-| YOUTH_NOTIFY_CONTROL | 同上 | true/false | 可选 | 中青通知开关 <br>默认当转盘次数为50或者100并且余额大于10元时推送通知 |
-|  |  |  | - |  |
-| YOUTH_READ | <span style="font-size:18; color:#0000ff">中青阅读 youth_read.yml</span> | &或者换行 | 必须 | 请求地址: "https://ios.baertt.com/v5/article/complete"，  <br>阅读请求体: p=xxx |
-| YOUTH_START | <span style="font-size:18; color:#0000ff">中青浏览赚 youth_gain.yml</span> | & | 必须 | 请求地址: "https://ios.baertt.com/v5/task/browse_start.json"，  <br>阅读请求体: p=xxx |
-| YOUTH_END | 同上 | & | 必须 | 请求地址: "https://ios.baertt.com/v5/task/browse_end.json"，  <br>阅读请求体: p=xxx |
-
-</details>
-
- >>> [回到上一页](..)
- 
-### 注意事项:
- > __提现金额需该请求一致，只更改提现金额无效，默认30元__
-
-
-
-
-
-  
-  
-  
-  
-  
+7. 所有直接或间接使用、查看此仓储脚本的人均应该仔细阅读此声明。本人保留随时更改或补充此声明的权利。一旦您使用或复制了此仓储脚本，即视为您已接受此免责声明。
