@@ -161,8 +161,8 @@ function TaskCenter() {
     $.post(kdHost('WebApi/NewTaskIos/getTaskList?'), async(error, resp, data) =>{
       try {
         taskres = JSON.parse(data);
-       // $.log(JSON.stringify(taskres,null,2))
-        //return
+          $.log(JSON.stringify(taskres,null,2))
+          return
         if (taskres.status == 1) {
           for (dailys of taskres.list.daily) {
             if (dailys.status == "1" && dailys.action != "") {
